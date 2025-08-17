@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f9fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00bcd4;
+            margin-bottom: 25px;
+            font-size: 30px;
+        }
+
+        p {
+            color: #444;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .contact-info strong {
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need assistance, we’re here to help.</p>
+        
+        <div class="contact-info">
+            <p><strong>Email:</strong> support@serviceplatform.com</p>
+            <p><strong>Phone:</strong> +233 24 000 1234</p>
+            <p><strong>Office Hours:</strong> Mon–Fri, 9:00 AM – 5:00 PM</p>
+        </div>
+    </div>
+</body>
+</html>

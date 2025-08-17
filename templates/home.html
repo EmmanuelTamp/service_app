@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome | Service Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #00bcd4;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #028ca0;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .service-card h3 {
+            color: #028ca0;
+            margin-bottom: 10px;
+        }
+
+        .service-card a {
+            text-decoration: none;
+            background: #00bcd4;
+            color: white;
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #00bcd4;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Online Service Application Portal</h1>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('login') }}">Admin Login</a>
+    </nav>
+
+    <div class="container">
+        <h2>Choose a Service to Apply For</h2>
+        <div class="services">
+            <div class="service-card">
+                <h3>Birth Certificate</h3>
+                <a href="{{ url_for('register', service='Birth Certificate') }}">Apply</a>
+            </div>
+            <div class="service-card">
+                <h3>Death Certificate</h3>
+                <a href="{{ url_for('register', service='Death Certificate') }}">Apply</a>
+            </div>
+            <div class="service-card">
+                <h3>CV Design</h3>
+                <a href="{{ url_for('register', service='CV Design') }}">Apply</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Service Portal. All rights reserved.
+    </footer>
+</body>
+</html>

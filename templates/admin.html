@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .dashboard {
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .logout-link {
+            text-align: right;
+            margin-top: -40px;
+            margin-bottom: 20px;
+        }
+
+        .logout-link a {
+            text-decoration: none;
+            color: #00bcd4;
+            font-weight: bold;
+        }
+
+        .logout-link a:hover {
+            text-decoration: underline;
+        }
+
+        .stats, .actions {
+            margin-bottom: 20px;
+        }
+
+        .stats p {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-download {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #00bcd4;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h2>Admin Dashboard</h2>
+
+        <div class="logout-link">
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+
+        {% if customers %}
+        <!-- ✅ Statistics -->
+        <div class="stats">
+            <p>Total Registrations: {{ total_customers }}</p>
+            {% for service, count in service_counts.items() %}
+                <p>{{ service.title() }}: {{ count }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- ✅ Search and Download -->
+        <div class="actions">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by name, email or service..." onkeyup="filterTable()">
+            <a href="{{ url_for('download_csv') }}" class="btn-download">Download CSV</a>
+        </div>
+
+        <!-- ✅ Customer Table -->
+        <table id="customerTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer[0] }}</td>
+                    <td>{{ customer[1] }}</td>
+                    <td>{{ customer[2] }}</td>
+                    <td>{{ customer[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No customers have registered yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- ✅ JavaScript for Filtering -->
+    <script>
+        function filterTable() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var rows = document.querySelectorAll("#customerTable tbody tr");
+
+            rows.forEach(function(row) {
+                var text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
